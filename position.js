@@ -10,7 +10,7 @@ const addNewArea = (lat, lng) => {
         fillOpacity: 0.5,
         radius: globalRadius
     }).addTo(map);
-    knownAreas.push(newArea);
+    knownAreas.push({'lat': lat, 'lng': lng});
 }
 
 const checkNewAreas = (curentLat, curentLng) => {
@@ -19,7 +19,7 @@ const checkNewAreas = (curentLat, curentLng) => {
     } else {
         let isAlone = true;
         knownAreas.forEach(area => {
-            const distance = haversineCalculation(curentLat, curentLng, area.getLatLng().lat, area.getLatLng().lng);
+            const distance = haversineCalculation(curentLat, curentLng, area.lat, area.lng);
             if(distance <= (globalRadius / 1000)) {
                 isAlone = false;
             }
